@@ -129,6 +129,7 @@ As a result it was observed that there was a substantial increase in accuracy as
 function on bc.train set
 Without the **grammar_rules function**(the code has to be modified for this a bit):
 So far scored 2000 sentences with 29442 words.
+
 | Type | Words Correct | Sentences Correct |
 |:-----------|------------:|:------------:|
 | Ground Truch       |        100.00% |     100.00%     |
@@ -138,6 +139,7 @@ So far scored 2000 sentences with 29442 words.
 
 
 **With the grammar_rules function:**
+
 | Type | Words Correct | Sentences Correct |
 |:-----------|------------:|:------------:|
 | Ground Truch       |        100.00% |     100.00%     |
