@@ -15,7 +15,7 @@ The dictionaries store:
 
 1. Probability of word given speech
 
-$$P(W|S)$$
+<img src="https://latex.codecogs.com/svg.latex?\large&space;$P(W|S)$$" title="\large $P(W|S)$$" />
 
 2. Transition probabilities P(Sn|Sn-1) and P(Sn|Sn-1, Sn-2)
 
@@ -150,7 +150,7 @@ however this may not always be the case with MCMC(when it doesn’t converge som
 
 Here is an example:
 
-[Result]()
+![Result](https://github.com/gurjaspalbedi/parts-of-speech-tagging/blob/master/resuls.JPG?raw=true)
 
 Here we notice that MCMC assigns the highest probability to the HMM, this can be however fixed though by continuing
 the iterations to a larger number.
