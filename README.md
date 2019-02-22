@@ -15,7 +15,7 @@ The dictionaries store:
 
 1. Probability of word given speech
 
-<img src="https://latex.codecogs.com/svg.latex?\large&space;$P(W|S)$$" title="\large $P(W|S)$$" />
+    <a href="https://www.codecogs.com/eqnedit.php?latex=\large&space;$$P(W|S)$$" target="_blank"><img src="https://latex.codecogs.com/png.latex?\large&space;$$P(W|S)$$" title="\large $$P(W|S)$$" /></a>
 
 2. Transition probabilities P(Sn|Sn-1) and P(Sn|Sn-1, Sn-2)
 
