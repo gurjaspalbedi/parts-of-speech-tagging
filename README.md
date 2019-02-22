@@ -149,6 +149,21 @@ It can be easily observed that Viterbi and Naïve Bayes return the highest value
 however this may not always be the case with MCMC(when it doesn’t converge sometimes) because it is a probabilistic model.
 
 Here is an example:
+
+
+| Type | Words Correct | Sentences Correct | Type | Words Correct | Sentences Correct |
+|:-----------|------------:|:------------:|
+| Ground Truch       |        100.00% |     100.00%     |
+| Simple     |      93.79% |    45.95%    |
+| HMM       |        96.09% |     60.65%     |
+| Complex         |           94.51% |      52.20%      |
+
+|| Simple | HMM | Complex | something |flailed| at|the|side| of|nick's|head|as|they|rolled|round|and|around|.|
+|:-------|:-----------|------------:|:------------:|:-------|:--:||:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| Ground Truch       |        100.00% |     100.00%     |
+| Simple     |      93.79% |    45.95%    |
+| HMM       |        96.09% |     60.65%     |
+| Complex         |           94.51% |      52.20%      |
 	         Simple     HMM Complex something flailed at   the  side of   nick's head as   they rolled around and  around .
 1. Ground truth   -51.69  -48.60  -58.02 noun      verb    adp  det  noun adp  noun   noun adp  pron verb   adv    conj adv    .
       1. Simple   -50.78  -50.01  -59.35 noun      det     adp  det  noun adp  det    noun adp  pron verb   adv    conj adv    .
