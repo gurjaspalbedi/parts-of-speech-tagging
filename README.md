@@ -161,3 +161,14 @@ Here is an example:
 
 Here we notice that MCMC assigns the highest probability to the HMM, this can be however fixed though by continuing
 the iterations to a larger number.
+
+**How to run the program**
+To run the pogram use the following command
+
+    python ./label.py <train_file_name> <test_file_name>
+
+Example:
+
+    python ./label.py bc.train bc.test
+
+
