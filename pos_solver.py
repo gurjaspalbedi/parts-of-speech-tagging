@@ -144,7 +144,7 @@ import math
 
 
 # transition counts  = matrix with count from Noun to Verb
-# initial counts: how many sentenses are starting with Noun
+# initial counts: how many sentences are starting with Noun
 
 global_emission_count = {}
 global_transition_count = {}
@@ -189,7 +189,7 @@ class Solver:
         else:
             global_transition_count[part_of_speech1] = {part_of_speech2 : 1}
 
-    # this computes the number of transtions from State Sn ->Sn+1 -> Sn+2
+    # this computes the number of transitions from State Sn ->Sn+1 -> Sn+2
     def second_level_transition(self, part_of_speech1, part_of_speech2, part_of_speech3):
         global global_2nd_level_transition
         if part_of_speech1 in global_2nd_level_transition:
@@ -347,7 +347,7 @@ class Solver:
             #current pos for which we want to calculate the probability
             for current_pos in global_unique_parts_of_speeches:
                 max_value = 0
-                #calulating for all the parts of speech because the previous part of speech can be anything.
+                #calculating for all the parts of speech because the previous part of speech can be anything.
                 #then we will take the maximum value form all the parts of speech and assign to the current cell
                 for pre_pos in global_unique_parts_of_speeches:
                     value = viterbi_table[horizontal_level-1][pre_pos] * self.get_transition_probability(pre_pos,current_pos) * self.get_emission_probability(words[horizontal_level],current_pos)
@@ -372,7 +372,7 @@ class Solver:
         return viterbi_track[state]
 
 
-    # uses the simple bayes net where the parts of speech are independent of each other
+    # uses the simple Bayes net where the parts of speech are independent of each other
     def simplified(self, words):
         tags_list =['']*len(words)
         for j in range(len(words)):
@@ -392,7 +392,7 @@ class Solver:
 #        sample = ["noun"] * len(words)  # initial sample, all tags are nouns
         sample = self.simplified(words) # here I use the answer from the simplified model as the initial
         iterations= 150 # total number of iterations, can be changed according to the initial sample and observations
-        burning_iteration = 30 #burnin iterations
+        burning_iteration = 30 #burning iterations
 
         for i in range(iterations):
             sample = self.generate_sample(words, sample)
@@ -458,7 +458,7 @@ class Solver:
         # this is the log of the probability with base 10
         return prob_s1+t+z+r
 
-    # this generates a sample for the complex mcmc model
+    # this generates a sample for the complex MCMC model
     def generate_sample(self, words, sample):
         tags = list(global_initial_count_for_part_of_speech.keys())
         for index in range(len(words)):
@@ -491,7 +491,7 @@ class Solver:
 
     # This solve() method is called by label.py, so you should keep the interface the
     #  same, but you can change the code itself. 
-    # It should return a list of part-of-speech labelings of the sentence, one
+    # It should return a list of part-of-speech labeling of the sentence, one
     #  part of speech per word.
     #
     def solve(self, model, sentence):
