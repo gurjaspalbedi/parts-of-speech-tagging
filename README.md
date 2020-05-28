@@ -13,13 +13,14 @@ As a first step we train the data, and store the emission, transition probabilit
 
 The dictionaries store:
 
-1. Probability of word given speech
+1. Probability of word given speech.
 
-    <a href="https://www.codecogs.com/eqnedit.php?latex=\large&space;$$P(W|S)$$" target="_blank"><img src="https://latex.codecogs.com/png.latex?\large&space;$$P(W|S)$$" title="\large $$P(W|S)$$" /></a>
+    $P(W|S)$
 
 2. Transition probabilities P(Sn|Sn-1) and P(Sn|Sn-1, Sn-2)
 
-    <a href="https://www.codecogs.com/eqnedit.php?latex=\large&space;$$P(S_{n}|S_{n-1})&space;\,\,\,\,&space;P(S_{n}|S_{n-1},S_{n-2})$$" target="_blank"><img src="https://latex.codecogs.com/png.latex?\large&space;$$P(S_{n}|S_{n-1})&space;\,\,\,\,&space;P(S_{n}|S_{n-1},S_{n-2})$$" title="\large $$P(S_{n}|S_{n-1}) \,\,\,\, P(S_{n}|S_{n-1},S_{n-2})$$" /></a>
+    $P(S_{n}|S_{n-1}, S_{n-2})$
+
 
 The above probabilities are stored to use further for the algos.
 
@@ -28,7 +29,7 @@ Here each part of speech is considered independent of the other
 
 Formulation: 
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\large&space;$$P(S|W)&space;=&space;max{P(W|S)\,&space;P(S)&space;\over&space;P(W)}$$" target="_blank"><img src="https://latex.codecogs.com/png.latex?\inline&space;\large&space;$$P(S|W)&space;=&space;max{P(W|S)\,&space;P(S)&space;\over&space;P(W)}$$" title="\large $$P(S|W) = max{P(W|S)\, P(S) \over P(W)}$$" /></a>
+$P(S|W) = max{P(W|S)\, P(S) \over P(W)}$
 
 
 As P(W) is constant, we ignore it and assign the tag with which we get maximum probability
@@ -43,7 +44,7 @@ For Viterbi we learned the transition probabilities and emission probabilities f
 
 Viterbi is defined as:
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\large&space;$$V(k&space;,&space;v)&space;=&space;max{&space;(V(k-1,&space;u)&space;*&space;q(v&space;|&space;u)&space;*&space;e(x,&space;v))&space;}$$" target="_blank"><img src="https://latex.codecogs.com/png.latex?\inline&space;\large&space;$$V(k&space;,&space;v)&space;=&space;max{&space;(V(k-1,&space;u)&space;*&space;q(v&space;|&space;u)&space;*&space;e(x,&space;v))&space;}$$" title="\large $$V(k , v) = max{ (V(k-1, u) * q(v | u) * e(x, v)) }$$" /></a>
+$$V(k , v) = max{ (V(k-1, u) * q(v | u) * e(x, v)) }$$
 
 Where k = sequence of length k
 Given sequence ending with  part of speech v (for length k)
@@ -53,7 +54,8 @@ e(x , v) = the emission probability for given word(x) and part of speech(v)
 
 Posterior is calculated as =
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\large&space;$$P(S_{1})*{P(S_{2}|S_{1})P(S_{3}|S_{2})…P(S_{n}|S_{n-1})}{&space;P(W_{1}|S_{1})…P(W_{n}|S_{n})}$$" target="_blank"><img src="https://latex.codecogs.com/png.latex?\inline&space;\large&space;$$P(S_{1})*{P(S_{2}|S_{1})P(S_{3}|S_{2})…P(S_{n}|S_{n-1})}{&space;P(W_{1}|S_{1})…P(W_{n}|S_{n})}$$" title="\large $$P(S_{1})*{P(S_{2}|S_{1})P(S_{3}|S_{2})…P(S_{n}|S_{n-1})}{ P(W_{1}|S_{1})…P(W_{n}|S_{n})}$$" /></a>
+$P(S_{1}){P(S_{2}|S_{1})P(S_{3}|S_{2})…P(S_{n}|S_{n-1})}{P(W_{1}|S_{1})…P(W_{n}|S_{n})}$
+
 
 Where s denotes the part of speeches and W denotes words
 
@@ -80,14 +82,15 @@ Algo/Formulation:
 
 1. Assign a random set of parts of speech to each word, and then choose each word and assign it all the 12 parts of speech. For each word we compute the posterior given by the following formula:
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\large&space;$$P(S_{i}|S-S_{i},&space;W)&space;=&space;(P(S_{1})P(W_{1}|S_{1})P(S_{2}|S_{1})P(S_{3}|S_{1},S_{2})….P(S_{n}|S_{n-1},S_{n-2})$$" target="_blank"><img src="https://latex.codecogs.com/png.latex?\inline&space;\large&space;$$P(S_{i}|S-S_{i},&space;W)&space;=&space;(P(S_{1})P(W_{1}|S_{1})P(S_{2}|S_{1})P(S_{3}|S_{1},S_{2})….P(S_{n}|S_{n-1},S_{n-2})$$" title="\large $$P(S_{i}|S-S_{i}, W) = (P(S_{1})P(W_{1}|S_{1})P(S_{2}|S_{1})P(S_{3}|S_{1},S_{2})….P(S_{n}|S_{n-1},S_{n-2})$$" /></a>
+
+$P(S_{i}|S-S_{i}, W) = (P(S_{1})P(W_{1}|S_{1})P(S_{2}|S_{1})P(S_{3}|S_{1},S_{2})….P(S_{n}|S_{n-1},S_{n-2})$
 
 
-2. Rearranging the above terms:
+1. Rearranging the above terms:
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\large&space;$$P(S_{1})*{P(S_{2}|S_{1})P(S_{3}|S_{2})…P(S_{n}|S_{n-1})}*{P(S_{3}|S_{1},S_{2})….P(S_{n}|S_{n-1},S_{n-2})}{P(W_{1}|S_{1})…P(W_{n}|S_{n})}$$" target="_blank"><img src="https://latex.codecogs.com/png.latex?\inline&space;\large&space;$$P(S_{1})*{P(S_{2}|S_{1})P(S_{3}|S_{2})…P(S_{n}|S_{n-1})}*{P(S_{3}|S_{1},S_{2})….P(S_{n}|S_{n-1},S_{n-2})}{P(W_{1}|S_{1})…P(W_{n}|S_{n})}$$" title="\large $$P(S_{1})*{P(S_{2}|S_{1})P(S_{3}|S_{2})…P(S_{n}|S_{n-1})}*{P(S_{3}|S_{1},S_{2})….P(S_{n}|S_{n-1},S_{n-2})}{P(W_{1}|S_{1})…P(W_{n}|S_{n})}$$" /></a>
+$$P(S_{1})*{P(S_{2}|S_{1})P(S_{3}|S_{2})…P(S_{n}|S_{n-1})}*{P(S_{3}|S_{1},S_{2})….P(S_{n}|S_{n-1},S_{n-2})}{P(W_{1}|S_{1})…P(W_{n}|S_{n})}$$
 
-1. The above terms are marginalised and the probability with each tag ie <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\large&space;$P(S_{i}&space;=&space;Noun)$" target="_blank"><img src="https://latex.codecogs.com/png.latex?\inline&space;\large&space;$P(S_{i}&space;=&space;Noun)$" title="\large $P(S_{i} = Noun)$" /></a> and so on.
+1. The above terms are marginalised and the probability with each tag ie $P(S_{i} = Noun)$ and so on.
 2. Next we randomly assign the tag each of which has a weight in proportion to its probability.
 3. Assign the picked parts of speech for the word and use this modified value for rest of the calculations
 4. We do this for all the words once, and then create a sample. This is done over a few hundred to thousand iterations.
